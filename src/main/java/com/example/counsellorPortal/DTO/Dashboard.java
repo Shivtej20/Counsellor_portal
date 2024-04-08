@@ -1,10 +1,12 @@
 package com.example.counsellorPortal.DTO;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
+//@Getter
+//@Setter
 public class Dashboard {
 
 	private Long totalEnquiries;

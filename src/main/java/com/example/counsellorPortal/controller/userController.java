@@ -38,7 +38,7 @@ public class userController {
 
 			Dashboard info = enquiryServiceImpl.getDashboardInfo(u.getUserId());
 			model.addAttribute("dashbord", info);
-			return "dashboard";
+			return "dashbord";
 		}
 	}
 
@@ -66,5 +66,14 @@ public class userController {
 
 		return "redirect:/";
 	}
+	
+	@GetMapping("/dashbord")
+	public String getDashB( HttpServletRequest httpServletRequest, Model model) {
+		HttpSession session = httpServletRequest.getSession(false);
+		Integer uid = (Integer) session.getAttribute("uid");
 
+		Dashboard info = enquiryServiceImpl.getDashboardInfo(uid);
+		model.addAttribute("dashbord", info);
+		return "dashbord";
+	}
 }

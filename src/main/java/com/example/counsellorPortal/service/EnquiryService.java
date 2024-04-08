@@ -11,5 +11,6 @@ public interface EnquiryService {
 	public boolean addEnquiry (Enquiry enquiry,Integer userId);
 	public List<Enquiry> getEnquiries(Enquiry enquiry,Integer userId);
 	public Enquiry getEnquiry(Integer enquiryId);
+	public void deleteEnquiry(Integer enquiryId);
 
 }

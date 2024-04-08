@@ -19,7 +19,7 @@
 		<font color="red">
 			<p th:text="${emsg}"></p>
 		</font>
-		<form th:object="${user}" th:action="@{/login}" method="post">
+		<form th:object="${user}" th:action="@{login}" method="post">
 			<table>
 				<tr>
 					<td>Email :</td>
@@ -34,7 +34,7 @@
 					<td> <input type="submit" value="Login" class="btn btn-primary" /> </td>
 				</tr>
 			</table>
-			<a href="register">Sign Up</a>
+			<a href="register" class="btn btn-primary">Sign Up</a>
 		</form>
 
 	</div>

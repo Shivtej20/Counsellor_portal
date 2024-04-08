@@ -48,16 +48,43 @@ public class EnquiryServiceImpl implements EnquiryService{
 	@Override
 	public List<Enquiry> getEnquiries(Enquiry enquiry, Integer userId) {
 		// Association mapping for foreign key
-		User user = userRepo.findById(userId).orElseThrow();
-		enquiry.setUser(user);
+		//User user = userRepo.findById(userId).orElseThrow();
+		User user = new User();
+		user.setUserId(userId);
 		
-		Example<Enquiry> of =Example.of(enquiry);
+		//Addi8ng filter values to entity 
+		Enquiry Search = new Enquiry();
+		Search.setUser(user);
+		
+		/*
+		 * Here we are getting null pointer exception to avoid this we change code from
+		 * !enquiry.getCourse().equals("") To this !"".equals(enquiry.getCourse())
+		 */
+		
+		if(null!=enquiry.getCourse() && !"".equals(enquiry.getCourse())) {
+			Search.setCourse(enquiry.getCourse());
+		}
+		if(null!=enquiry.getMode() && !"".equals(enquiry.getMode())) {
+			Search.setMode(enquiry.getMode());
+		}
+		if(null!= enquiry.getStatus() && !"".equals(enquiry.getStatus())) {
+			Search.setStatus(enquiry.getStatus());
+		}
+		
+		//Dynamic query creation
+		Example<Enquiry> of =Example.of(Search);
 		return enquiryRepo.findAll(of);
 	}
 
 	@Override
 	public Enquiry getEnquiry(Integer enquiryId) {
 		return enquiryRepo.findById(enquiryId).orElseThrow();
+	}
+
+	@Override
+	public void deleteEnquiry(Integer enquiryId) {
+		enquiryRepo.deleteById(enquiryId);
+		
 	}
 
 }
